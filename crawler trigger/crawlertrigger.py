@@ -6,7 +6,6 @@ glue = boto3.client('glue')
 
 def lambda_handler(event, context):
     print('Event :', event)
-    # TODO implement
     response = glue.start_crawler(
         Name='demoserverlesstriggerbasedtechnique'
     )
