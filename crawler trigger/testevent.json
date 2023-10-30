@@ -1,0 +1,38 @@
+{
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "eu-west-2",
+      "eventTime": "2023-10-17T13:54:01.710Z",
+      "eventName": "ObjectCreated:Put",
+      "userIdentity": {
+        "principalId": "AWS:AIDA2EP5NNUZMBMA2OLDJ"
+      },
+      "requestParameters": {
+        "sourceIPAddress": "102.159.173.109"
+      },
+      "responseElements": {
+        "x-amz-request-id": "RNGJZ6CTYS2EGVJB",
+        "x-amz-id-2": "zFcAJjOu0I7RQWUk3QTkCUs8z0pOkgkWaSoWnjaUUOdpOd+psd9JwDv/qT95SL4UHovdjv7Qmzy0CvKY2Y9a5+8tbkkSvb0hv0Ks2XMcMZI="
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "0b3ff9a2-9a60-425b-bb1e-abc24026053e",
+        "bucket": {
+          "name": "adnen.mess.serverless.demo",
+          "ownerIdentity": {
+            "principalId": "A240VTLMOFEUZZ"
+          },
+          "arn": "arn:aws:s3:::adnen.mess.serverless.demo"
+        },
+        "object": {
+          "key": "csvdatastorerforse/billing_data_meat_may_2023.csv",
+          "size": 1262,
+          "eTag": "5d3e8ae4562ab8127646af31c2d676c6",
+          "sequencer": "00652E91F9AB44864D"
+        }
+      }
+    }
+  ]
+}
