@@ -68,9 +68,11 @@ When the Glue ETL job finishes successfully, the Cloudwatch rule sends a notific
 
 - Add to this aws lambda function the ability to access s3 and glue services
 
-- ![iam](/image/IAM-first.png)
 
-- ![lambda_iam](/image/lambda-iam.png)
+![iam](/image/IAM-first.png)
+
+
+![lambda_iam](/image/lambda-iam.png)
 
 **2.4 General config**
 
@@ -86,6 +88,7 @@ When the Glue ETL job finishes successfully, the Cloudwatch rule sends a notific
 **3.2 Create Crawler**
 
 - Chose a name for the crawler (in my case, the crawler name is demoserverlesstriggerbasedtechnique)
+
 
 - Choose data sources
 
@@ -103,5 +106,54 @@ When the Glue ETL job finishes successfully, the Cloudwatch rule sends a notific
 
   - Use this IAM role with the crawler
 
+
 ![IAM_crawler](/image/IAM_crawler.png)
 
+Once the crawler has run, a table will be created with the name of the folder in my S3 basket 
+(in my case, the folder in the S3 bucket is csvdatastorerforse)
+
+#### 4. Lambda function (trigger the glue job)
+
+**4.1 The code**
+
+[lambda function](crawler%20trigger/crawlertrigger.py)
+
+**4.2 IAM roles**
+
+- We can use the same IAM role and general configuration as for the previous lambda function
+
+![iam](/image/IAM-first.png)
+
+
+#### 5. CloudWatch Events
+
+
+
+- The purpose of the eventbrigde is to connect two aws services on the basis of a modified event 
+(success or failure or simply a change), so that if the state of the Glue crawler becomes a success, 
+Cloudwatch will trigger the lambda ETL job
+
+
+- To create CloudWatch Events, go to CloudWatch then **Rules**
+
+
+![create_event_crawler](/image/create_event_crawler.png)
+
+- **Crucial**: if we create an event bridge like this, it will trigger the lambda function for each success 
+of the glue crawler, and we don't want that,
+  we want our crawler, which has the name "demoserverlesstriggerbasedtechnique" to only trigger this event bridge.
+To do this, we need to modify the Event pattern by adding the name of the crawler task.
+
+
+![custom_event_crawler](/image/custom_event_crawler.png)
+
+
+- select a target witch is the second lambda function 
+
+
+![target_glue](/image/select_target.png)
+
+
+The final result will be as follows
+
+![event_glue](/image/event_create.png)
