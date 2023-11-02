@@ -128,7 +128,6 @@ Once the crawler has run, a table will be created with the name of the folder in
 #### 5. CloudWatch Events
 
 
-
 - The purpose of the eventbrigde is to connect two aws services on the basis of a modified event 
 (success or failure or simply a change), so that if the state of the Glue crawler becomes a success, 
 Cloudwatch will trigger the lambda ETL job
@@ -157,3 +156,28 @@ To do this, we need to modify the Event pattern by adding the name of the crawle
 The final result will be as follows
 
 ![event_glue](/image/event_create.png)
+
+
+#### 5. Glue job
+
+**5.1 IAM roles**
+
+- First of all, we need to create an IAM role for the glue job and allow it to access glue service, S3 and Cloudwatch
+
+![create_iam_glue](/image/create_iam_glue.png)
+
+
+![iam-glue](/image/IAM-glue.png)
+
+**5.2 Glue Job**
+
+![glue-job](/image/glue-first.png)
+
+- In the script insert the spark code
+
+[spark code](glue%20job/job.py)
+
+- In the **Job details**, enter the name of the job we are creating on the lambda function, which is "demoserverless"
+
+![glue_job](/image/save_job.png)
+
