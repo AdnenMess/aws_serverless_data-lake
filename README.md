@@ -158,9 +158,9 @@ The final result will be as follows
 ![event_glue](/image/event_create.png)
 
 
-#### 5. Glue job
+#### 6. Glue job
 
-**5.1 IAM roles**
+**6.1 IAM roles**
 
 - First of all, we need to create an IAM role for the glue job and allow it to access glue service, S3 and Cloudwatch
 
@@ -169,7 +169,7 @@ The final result will be as follows
 
 ![iam-glue](/image/IAM-glue.png)
 
-**5.2 Glue Job**
+**6.2 Glue Job**
 
 ![glue-job](/image/glue-first.png)
 
@@ -180,4 +180,25 @@ The final result will be as follows
 - In the **Job details**, enter the name of the job we are creating on the lambda function, which is "demoserverless"
 
 ![glue_job](/image/save_job.png)
+
+#### 7. Simple Notification Service (SNS)
+
+- Create a standard Topic and add an email as subscription
+
+![SNS](/image/SNS.png)
+
+#### 8. CloudWatch Events
+
+- The purpose of this second bridge is to trigger a subscribed email to an SNS subject 
+in the event of successful completion of a glue job 
+
+![second_event](/image/second_event_create.png)
+
+![target_sns](/image/event_SNS.png)
+
+---
+
+After successfully running the ETL job, we will receive an email like this
+
+![email](/image/mail.png)
 
